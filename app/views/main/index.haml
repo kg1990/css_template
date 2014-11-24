@@ -1,0 +1,44 @@
+.row
+  .col-lg-12
+    %h1.page-header CSS模版
+    -@templates.each do |template|
+      .col-lg-3.col-md-4.col-xs-6.thumb
+        .thumbnail
+          .caption
+            %h4=template.name
+            %p="上传时间:" + format_time(template.created_at)
+            %p="浏览次数:" + template.view_count.to_s
+            %p
+              %a.btn.btn-lg.btn-success{:href => "/detail/#{template.id}"} 查看
+          %img.img-responsive{:alt => "#{template.name}", :src => "#{get_image_href(template.image_path)}"}
+  -if @total > 1
+    .container
+      .row.clearfix
+        .col-md-12.column{:style => "text-align:center;"}
+          %ul.pagination.pagination-lg
+            -if @current_page > 1
+              %li
+                %a{:href => "/d/#{@current_page - 1}"} 上一页
+            -for i in 1..@total
+              -if i == @current_page
+                %li.active
+                  %a{:href => "/d/#{i}"}=i
+              -else
+                %li
+                  %a{:href => "/d/#{i}"}=i
+            -if @current_page != @total
+              %li
+                %a{:href => "/d/#{@current_page + 1}"} 下一页
+:javascript
+  $( document ).ready(function() {
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+  });

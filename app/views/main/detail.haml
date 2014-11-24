@@ -1,0 +1,45 @@
+.row
+  .col-md-4
+    %img.img-responsive.img-rounded{:alt => "", :src => "#{get_image_href(@template.image_path)}"}
+  .col-md-4
+    %h1=@template.name
+    %p="上传时间:" + format_time(@template.created_at)
+    %p="源文件:" + @template.source_type.to_s
+    %p="风格:" + @template.style_type.to_s
+    %p="来源:" + @template.come_form.to_s
+    %p="浏览次数:" + @template.view_count.to_s
+    %p="文件大小:" + @template.file_length.to_s
+    %a.btn.btn-success.btn-block.btn-lg{:href => "#{get_download_href(@template.zip_path)}"} 下载
+  .col-md-4
+    %h1 AD
+    %p 这里是对主题美好的介绍，希望可以得到你的支持，如果你有什么想对我们说，请通过联系我们进行反馈，我们一直在进步。
+/ Page Features
+%hr
+.row
+  .col-lg-12
+    .well.text-center
+      更多CSS模版推荐
+.row.text-center
+  -@random_templates.each do |template|
+    .col-lg-3.col-md-4.col-xs-6.thumb
+      .thumbnail
+        .caption
+          %h4=template.name
+          %p="上传时间:" + format_time(template.created_at)
+          %p="浏览次数:" + template.view_count.to_s
+          %p
+            %a.btn.btn-lg.btn-success{:href => "/detail/#{template.id}"} 查看
+        %img.img-responsive{:alt => "#{template.name}", :src => "#{get_image_href(template.image_path)}"}
+:javascript
+  $( document ).ready(function() {
+    $("[rel='tooltip']").tooltip();
+
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    );
+  });

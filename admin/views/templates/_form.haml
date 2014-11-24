@@ -1,0 +1,43 @@
+%fieldset.control-group
+  =f.label :name, :class => 'control-label'
+  .controls
+    =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+-if request.path_info.include?('new')
+  %fieldset.control-group
+    =f.label :image_file, :class => 'control-label'
+    .controls
+      %input.input-file{:type => "file", :name => "image"}
+  %fieldset.control-group
+    =f.label :zip_file, :class => 'control-label'
+    .controls
+      %input.input-file{:type => "file", :name => "zip"}
+%fieldset.control-group
+  =f.label :come_from, :class => 'control-label'
+  .controls
+    =f.text_field :come_form, :class => 'form-control input-large input-with-feedback'
+%fieldset.control-group
+  =f.label :style_type, :class => 'control-label'
+  .controls
+    =f.text_field :style_type, :class => 'form-control input-large input-with-feedback'
+%fieldset.control-group
+  =f.label :source_type, :class => 'control-label'
+  .controls
+    =f.text_field :source_type, :class => 'form-control input-large input-with-feedback'
+%fieldset.control-group
+  =f.label :file_length, :class => 'control-label'
+  .controls
+    =f.text_field :file_length, :class => 'form-control input-large input-with-feedback'
+%fieldset.control-group
+  =f.label :github_href, :class => 'control-label'
+  .controls
+    =f.text_field :github_href, :class => 'form-control input-large input-with-feedback'
+%fieldset.control-group
+  =f.label :desc, :class => 'control-label'
+  .controls
+    =f.text_area :desc, :class => 'form-control'
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:templates, :index), :class => 'btn btn-default'

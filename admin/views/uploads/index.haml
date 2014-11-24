@@ -1,0 +1,20 @@
+%form.form-horizontal{:action => '/admin/uploads/image', :method => :post, :class => 'form-horizontal', :enctype => "multipart/form-data"}
+  %fieldset
+    #legend
+      %legend Image
+    .control-group
+      .controls
+        %input#fileInput.input-file{:type => "file", :name => "image"}
+    .control-group
+      .controls
+        %button.btn.btn-success Upload
+%form.form-horizontal{:action => '/admin/uploads/zip', :method => :post, :class => 'form-horizontal', :enctype => "multipart/form-data"}
+  %fieldset
+    #legend
+      %legend Zip
+    .control-group
+      .controls
+        %input#fileInput.input-file{:type => "file", :name => "zip"}
+    .control-group
+      .controls
+        %button.btn.btn-success Upload
